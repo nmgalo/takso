@@ -26,6 +26,11 @@ defmodule TaksoWeb.UserController do
     end
   end
 
+  def show(conn, %{"id" => id}) do
+    user = Repo.get!(User, id)
+    render(conn, "show.html", user: user)
+  end
+
   def edit(conn, %{"id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.changeset(user, %{})
